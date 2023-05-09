@@ -29,26 +29,36 @@ export default function Upload() {
 	};
 
 	return (
-		<div className="container">
+		<div className="max-w-lg mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
 			<form onSubmit={handleSubmit}>
-				<div className="mb-4">
-					<label htmlFor="file" className="block text-sm font-medium text-gray-700">
-						Upload a file to IPFS
+				<div>
+					<label className="text-gray-700 font-bold mb-2" htmlFor="file">
+						Choose a file to upload
 					</label>
-					<input id="file" type="file" className="mt-1 block w-full" onChange={handleChange} />
+					<div className="relative border-dashed border-2 border-gray-400 rounded-lg h-64 flex justify-center items-center">
+						<div className="absolute">
+							<div className="flex flex-col items-center">
+								<svg className="w-10 h-10 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+								</svg>
+								<span className="text-gray-400 group-hover:text-gray-600 mt-2">{file ? file.name : "Select a file"}</span>
+							</div>
+						</div>
+						<input type="file" className="h-full w-full opacity-0" id="file" onChange={handleChange} />
+					</div>
 				</div>
-				<button type="submit" className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${uploading ? "opacity-50 cursor-not-allowed" : ""}`} disabled={uploading}>
+				<button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={!file || uploading}>
 					{uploading ? "Uploading..." : "Upload"}
 				</button>
-				{ipfsUrl && (
-					<div className="mt-4">
-						<p className="text-sm text-gray-600">File uploaded to IPFS:</p>
-						<a href={ipfsUrl} target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-700 underline">
-							{ipfsUrl}
-						</a>
-					</div>
-				)}
 			</form>
+			{ipfsUrl && (
+				<div className="mt-8">
+					<p className="text-gray-700 font-bold">File uploaded to IPFS:</p>
+					<a href={ipfsUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 break-all">
+						{ipfsUrl}
+					</a>
+				</div>
+			)}
 		</div>
 	);
 }

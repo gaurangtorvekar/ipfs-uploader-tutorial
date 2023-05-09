@@ -15,7 +15,7 @@ export default function Home() {
 			</Head>
 
 			<main>
-				<h1 className="text-2xl font-semibold mb-4">IPFS File Uploader using NextJS, Tailwind CSS, and web3.storage</h1>
+				<h1 className="text-2xl text-center font-semibold mb-4">IPFS File Uploader using NextJS, Tailwind CSS, and web3.storage</h1>
 				<Upload />
 			</main>
 		</div>
